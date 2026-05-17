@@ -12,7 +12,6 @@
     <h1>📐 Repaso de Matemática</h1>
     <div id="status-bar">
       <span id="status-text">Cargando...</span>
-      <button id="btn-edit" onclick="toggleEdit()">✏️ Editar</button>
     </div>
   </header>
 
@@ -20,16 +19,6 @@
     <div class="nav-links">
       <a href="ejercicios.html" class="nav-btn">📝 Ir a los ejercicios</a>
       <a href="docente.html" class="nav-btn nav-btn-teacher">👩‍🏫 Panel docente</a>
-    </div>
-
-    <div id="toolbar" class="toolbar hidden">
-      <button onclick="fmt('bold')" title="Negrita"><b>N</b></button>
-      <button onclick="fmt('italic')" title="Cursiva"><i>C</i></button>
-      <button onclick="fmt('underline')" title="Subrayado"><u>S</u></button>
-      <button onclick="insertTag('h2')" title="Título">H2</button>
-      <button onclick="insertTag('h3')" title="Subtítulo">H3</button>
-      <button onclick="fmt('insertUnorderedList')" title="Lista">• Lista</button>
-      <button onclick="saveContent()" id="btn-save">💾 Guardar</button>
     </div>
 
     <div id="content-area" class="content"></div>
