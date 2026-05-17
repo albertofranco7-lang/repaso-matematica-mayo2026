@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios de Matemática</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="ejercicios.css" />
+</head>
+<body>
+
+  <header>
+    <h1>📝 Ejercicios de Matemática</h1>
+    <div id="status-bar">
+      <span id="status-text">Potenciación</span>
+      <a href="index.html" style="color:#a0aec0;font-size:0.8rem;text-decoration:none;">← Volver al repaso</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Nombre del alumno -->
+    <div class="card name-card">
+      <label for="student-name">✏️ Tu nombre:</label>
+      <input type="text" id="student-name" placeholder="Escribí tu nombre completo" autocomplete="name" />
+    </div>
+
+    <!-- EJERCICIO 1 -->
+    <div class="card exercise-card" id="ex1">
+      <div class="exercise-header">
+        <span class="exercise-num">Ejercicio 1</span>
+        <span class="exercise-topic">Potencias de exponente 2</span>
+      </div>
+      <div class="exercise-body">
+        <p class="consigna">Expresa cada número como una potencia de exponente 2. Completá el recuadro con la base correcta:</p>
+        <div class="items-grid">
+          <div class="item">a) 25 = <span class="box">?</span>²</div>
+          <div class="item">b) 49 = <span class="box">?</span>²</div>
+          <div class="item">c) 81 = <span class="box">?</span>²</div>
+          <div class="item">d) 121 = <span class="box">?</span>²</div>
+        </div>
+        <div class="tip">
+          💡 <strong>Recordá:</strong> tenés que encontrar el número que multiplicado por sí mismo da el resultado. Por ejemplo: 64 = 8² porque 8 × 8 = 64.
+        </div>
+      </div>
+      <div class="answer-section">
+        <p class="answer-label">📸 Sacá una foto de tu resolución en el cuaderno y subila acá:</p>
+        <div class="upload-area" id="upload-ex1" onclick="document.getElementById('file-ex1').click()">
+          <span class="upload-icon">📷</span>
+          <span class="upload-text">Tocar para adjuntar foto</span>
+          <input type="file" id="file-ex1" accept="image/*" capture="environment" onchange="previewImage('ex1', this)" />
+        </div>
+        <div class="preview-container hidden" id="preview-ex1">
+          <img id="img-ex1" src="" alt="Tu respuesta" />
+          <button class="btn-remove" onclick="removeImage('ex1')">✕ Quitar foto</button>
+        </div>
+        <button class="btn-send" onclick="sendAnswer('ex1', 'Ejercicio 1 - Potencias de exponente 2')">
+          📤 Enviar respuesta
+        </button>
+        <div class="send-status hidden" id="status-ex1"></div>
+      </div>
+    </div>
+
+    <!-- EJERCICIO 2 -->
+    <div class="card exercise-card" id="ex2">
+      <div class="exercise-header">
+        <span class="exercise-num">Ejercicio 2</span>
+        <span class="exercise-topic">Expresa como potencia</span>
+      </div>
+      <div class="exercise-body">
+        <p class="consigna">Escribí cada multiplicación como una potencia. Completá la base y el exponente:</p>
+        <div class="items-grid">
+          <div class="item">a) 5 × 5 × 5 = <span class="box">?</span><sup><span class="box-sup">?</span></sup></div>
+          <div class="item">b) 4 × 4 × 4 × 4 = <span class="box">?</span><sup><span class="box-sup">?</span></sup></div>
+          <div class="item">c) 2 × 2 × 2 × 2 × 2 = <span class="box">?</span><sup><span class="box-sup">?</span></sup></div>
+          <div class="item">d) 10 × 10 × 10 = <span class="box">?</span><sup><span class="box-sup">?</span></sup></div>
+          <div class="item">e) 6 × 6 = <span class="box">?</span><sup><span class="box-sup">?</span></sup></div>
+          <div class="item">f) 3 × 3 × 3 × 3 × 3 × 3 = <span class="box">?</span><sup><span class="box-sup">?</span></sup></div>
+        </div>
+        <div class="tip">
+          💡 <strong>Recordá:</strong> la base es el número que se repite y el exponente es cuántas veces se repite. Por ejemplo: 7 × 7 × 7 × 7 = 7⁴
+        </div>
+      </div>
+      <div class="answer-section">
+        <p class="answer-label">📸 Sacá una foto de tu resolución en el cuaderno y subila acá:</p>
+        <div class="upload-area" id="upload-ex2" onclick="document.getElementById('file-ex2').click()">
+          <span class="upload-icon">📷</span>
+          <span class="upload-text">Tocar para adjuntar foto</span>
+          <input type="file" id="file-ex2" accept="image/*" capture="environment" onchange="previewImage('ex2', this)" />
+        </div>
+        <div class="preview-container hidden" id="preview-ex2">
+          <img id="img-ex2" src="" alt="Tu respuesta" />
+          <button class="btn-remove" onclick="removeImage('ex2')">✕ Quitar foto</button>
+        </div>
+        <button class="btn-send" onclick="sendAnswer('ex2', 'Ejercicio 2 - Expresa como potencia')">
+          📤 Enviar respuesta
+        </button>
+        <div class="send-status hidden" id="status-ex2"></div>
+      </div>
+    </div>
+
+    <!-- EJERCICIO 3 -->
+    <div class="card exercise-card" id="ex3">
+      <div class="exercise-header">
+        <span class="exercise-num">Ejercicio 3</span>
+        <span class="exercise-topic">Propiedades — Multiplicación de potencias</span>
+      </div>
+      <div class="exercise-body">
+        <p class="consigna">Expresá como una sola potencia (sumá los exponentes cuando la base es igual):</p>
+        <div class="items-grid">
+          <div class="item">a) 3² × 3⁴ = 3<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">b) 5¹ × 5³ × 5² = 5<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">c) 2³ × 2³ = 2<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">d) 4² × 4⁵ = 4<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">e) 7¹ × 7¹ × 7¹ = 7<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">f) 10² × 10³ = 10<sup><span class="box-sup">?</span></sup></div>
+        </div>
+        <div class="tip">
+          💡 <strong>Propiedad:</strong> cuando multiplicamos potencias de igual base, <strong>sumamos</strong> los exponentes. Ejemplo: 2⁴ × 2³ = 2⁷
+        </div>
+      </div>
+      <div class="answer-section">
+        <p class="answer-label">📸 Sacá una foto de tu resolución en el cuaderno y subila acá:</p>
+        <div class="upload-area" id="upload-ex3" onclick="document.getElementById('file-ex3').click()">
+          <span class="upload-icon">📷</span>
+          <span class="upload-text">Tocar para adjuntar foto</span>
+          <input type="file" id="file-ex3" accept="image/*" capture="environment" onchange="previewImage('ex3', this)" />
+        </div>
+        <div class="preview-container hidden" id="preview-ex3">
+          <img id="img-ex3" src="" alt="Tu respuesta" />
+          <button class="btn-remove" onclick="removeImage('ex3')">✕ Quitar foto</button>
+        </div>
+        <button class="btn-send" onclick="sendAnswer('ex3', 'Ejercicio 3 - Multiplicación de potencias')">
+          📤 Enviar respuesta
+        </button>
+        <div class="send-status hidden" id="status-ex3"></div>
+      </div>
+    </div>
+
+    <!-- EJERCICIO 4 -->
+    <div class="card exercise-card" id="ex4">
+      <div class="exercise-header">
+        <span class="exercise-num">Ejercicio 4</span>
+        <span class="exercise-topic">Propiedades — División de potencias</span>
+      </div>
+      <div class="exercise-body">
+        <p class="consigna">Expresá como una sola potencia (restá los exponentes cuando la base es igual):</p>
+        <div class="items-grid">
+          <div class="item">a) 5⁶ ÷ 5² = 5<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">b) 3⁸ ÷ 3³ = 3<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">c) 2⁷ ÷ 2⁴ = 2<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">d) 10⁵ ÷ 10² = 10<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">e) 4⁹ ÷ 4³ ÷ 4² = 4<sup><span class="box-sup">?</span></sup></div>
+        </div>
+        <div class="tip">
+          💡 <strong>Propiedad:</strong> cuando dividimos potencias de igual base, <strong>restamos</strong> los exponentes. Ejemplo: 7³ ÷ 7¹ = 7²
+        </div>
+      </div>
+      <div class="answer-section">
+        <p class="answer-label">📸 Sacá una foto de tu resolución en el cuaderno y subila acá:</p>
+        <div class="upload-area" id="upload-ex4" onclick="document.getElementById('file-ex4').click()">
+          <span class="upload-icon">📷</span>
+          <span class="upload-text">Tocar para adjuntar foto</span>
+          <input type="file" id="file-ex4" accept="image/*" capture="environment" onchange="previewImage('ex4', this)" />
+        </div>
+        <div class="preview-container hidden" id="preview-ex4">
+          <img id="img-ex4" src="" alt="Tu respuesta" />
+          <button class="btn-remove" onclick="removeImage('ex4')">✕ Quitar foto</button>
+        </div>
+        <button class="btn-send" onclick="sendAnswer('ex4', 'Ejercicio 4 - División de potencias')">
+          📤 Enviar respuesta
+        </button>
+        <div class="send-status hidden" id="status-ex4"></div>
+      </div>
+    </div>
+
+    <!-- EJERCICIO 5 -->
+    <div class="card exercise-card" id="ex5">
+      <div class="exercise-header">
+        <span class="exercise-num">Ejercicio 5</span>
+        <span class="exercise-topic">Potencias de 10</span>
+      </div>
+      <div class="exercise-body">
+        <p class="consigna">Completá el exponente del 10 contando los ceros:</p>
+        <div class="items-grid">
+          <div class="item">a) 10 000 = 10<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">b) 100 = 10<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">c) 100 000 000 = 10<sup><span class="box-sup">?</span></sup></div>
+          <div class="item">d) 10 000 000 = 10<sup><span class="box-sup">?</span></sup></div>
+        </div>
+        <p class="consigna" style="margin-top:14px">Ahora al revés — escribí el número que representa cada potencia:</p>
+        <div class="items-grid">
+          <div class="item">e) 10³ = <span class="box">?</span></div>
+          <div class="item">f) 10⁷ = <span class="box">?</span></div>
+          <div class="item">g) 10¹¹ = <span class="box">?</span></div>
+        </div>
+        <div class="tip">
+          💡 <strong>Recordá:</strong> el exponente del 10 indica la cantidad de ceros. Ejemplo: 10⁶ = 1 000 000 (6 ceros).
+        </div>
+      </div>
+      <div class="answer-section">
+        <p class="answer-label">📸 Sacá una foto de tu resolución en el cuaderno y subila acá:</p>
+        <div class="upload-area" id="upload-ex5" onclick="document.getElementById('file-ex5').click()">
+          <span class="upload-icon">📷</span>
+          <span class="upload-text">Tocar para adjuntar foto</span>
+          <input type="file" id="file-ex5" accept="image/*" capture="environment" onchange="previewImage('ex5', this)" />
+        </div>
+        <div class="preview-container hidden" id="preview-ex5">
+          <img id="img-ex5" src="" alt="Tu respuesta" />
+          <button class="btn-remove" onclick="removeImage('ex5')">✕ Quitar foto</button>
+        </div>
+        <button class="btn-send" onclick="sendAnswer('ex5', 'Ejercicio 5 - Potencias de 10')">
+          📤 Enviar respuesta
+        </button>
+        <div class="send-status hidden" id="status-ex5"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="ejercicios.js"></script>
+</body>
+</html>

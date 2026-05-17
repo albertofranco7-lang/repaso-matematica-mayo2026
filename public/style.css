@@ -176,6 +176,40 @@ main {
   margin: 4px 0;
 }
 
+/* Nav links */
+.nav-links {
+  display: flex;
+  gap: 10px;
+  padding: 14px 16px 0;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  flex: 1;
+  text-align: center;
+  background: #4a90d9;
+  color: white;
+  text-decoration: none;
+  padding: 12px 10px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: background 0.2s;
+  min-width: 140px;
+}
+
+.nav-btn:hover {
+  background: #357abd;
+}
+
+.nav-btn-teacher {
+  background: #2b4a7a;
+}
+
+.nav-btn-teacher:hover {
+  background: #1a3358;
+}
+
 /* Toast notification */
 .toast {
   position: fixed;
