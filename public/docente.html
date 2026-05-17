@@ -157,7 +157,13 @@
 
   <div class="panel-header">
     <h2>Respuestas recibidas <span class="count-badge" id="count">0</span></h2>
-    <button class="btn-refresh" onclick="loadAnswers()">🔄 Actualizar</button>
+    <button class="btn-refresh" onclick="loadAll()">🔄 Actualizar</button>
+  </div>
+
+  <!-- Alumnos que finalizaron -->
+  <div style="margin: 0 16px 4px;">
+    <h2 style="font-size:1.1rem;color:#2b4a7a;margin-bottom:8px;">✅ Alumnos que finalizaron <span class="count-badge" id="sessions-count">0</span></h2>
+    <div id="sessions-list" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;"></div>
   </div>
 
   <div class="filters">
@@ -187,15 +193,41 @@
   <script>
     let allAnswers = [];
 
-    async function loadAnswers() {
+    async function loadAll() {
       document.getElementById('status-text').textContent = 'Actualizando...';
+      await Promise.all([loadAnswers(), loadSessions()]);
+      document.getElementById('status-text').textContent = 'Respuestas de alumnos';
+    }
+
+    async function loadSessions() {
+      try {
+        const res = await fetch('/api/sessions');
+        const sessions = await res.json();
+        document.getElementById('sessions-count').textContent = sessions.length;
+        const list = document.getElementById('sessions-list');
+        if (!sessions.length) {
+          list.innerHTML = '<span style="color:#a0aec0;font-size:0.88rem;">Ningún alumno finalizó todavía</span>';
+          return;
+        }
+        list.innerHTML = sessions.map(s => {
+          const date = new Date(s.finished_at);
+          const timeStr = date.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+          return `<span style="background:#c6f6d5;color:#276749;padding:6px 12px;border-radius:20px;font-size:0.85rem;font-weight:600;">
+            ✅ ${escapeHtml(s.student_name)} <span style="font-weight:400;opacity:0.8">${timeStr}</span>
+          </span>`;
+        }).join('');
+      } catch (err) {
+        document.getElementById('sessions-list').innerHTML = '<span style="color:#e53e3e;font-size:0.85rem;">Error al cargar</span>';
+      }
+    }
+
+    async function loadAnswers() {
       try {
         const res = await fetch('/api/answers');
         allAnswers = await res.json();
         // Ordenar por más reciente primero
         allAnswers.sort((a, b) => new Date(b.sentAt) - new Date(a.sentAt));
         renderAnswers();
-        document.getElementById('status-text').textContent = 'Respuestas de alumnos';
       } catch (err) {
         document.getElementById('answers-grid').innerHTML = '<div class="empty-state">Error al cargar respuestas</div>';
       }
@@ -279,7 +311,7 @@
       toastTimer = setTimeout(() => toast.classList.add('hidden'), 2500);
     }
 
-    loadAnswers();
+    loadAll();
   </script>
 </body>
 </html>

@@ -123,6 +123,35 @@ app.delete('/api/answers/:id', async (req, res) => {
   }
 });
 
+// GET - obtener sesiones finalizadas
+app.get('/api/sessions', async (req, res) => {
+  try {
+    const rows = await supabase('GET', 'sessions', null, '?order=finished_at.desc');
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al leer sesiones' });
+  }
+});
+
+// POST - registrar finalización de examen
+app.post('/api/sessions', async (req, res) => {
+  try {
+    const { studentName } = req.body;
+    if (!studentName) return res.status(400).json({ error: 'Nombre requerido' });
+    const row = {
+      id: Date.now().toString(),
+      student_name: studentName.trim(),
+      finished_at: new Date().toISOString()
+    };
+    await supabase('POST', 'sessions', row);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al guardar sesión' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
 });

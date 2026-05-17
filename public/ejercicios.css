@@ -241,3 +241,44 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Botón finalizar */
+.finish-card {
+  border-left: 5px solid #38a169;
+  text-align: center;
+  padding: 24px 18px;
+  margin-bottom: 30px;
+}
+
+.finish-text {
+  color: #4a5568;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.btn-finish {
+  width: 100%;
+  background: #38a169;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 4px 12px rgba(56,161,105,0.3);
+}
+
+.btn-finish:hover {
+  background: #2f855a;
+  transform: translateY(-1px);
+}
+
+.btn-finish:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

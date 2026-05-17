@@ -89,3 +89,33 @@ function showToast(msg, type) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.add('hidden'), 2800);
 }
+
+async function finishExam() {
+  const studentName = document.getElementById('student-name').value.trim();
+  if (!studentName) {
+    showToast('Primero escribí tu nombre arriba', 'error');
+    document.getElementById('student-name').focus();
+    return;
+  }
+
+  if (!confirm(`¿Estás seguro de que querés finalizar, ${studentName}? Esta acción no se puede deshacer.`)) return;
+
+  const btn = document.querySelector('.btn-finish');
+  btn.disabled = true;
+  btn.textContent = '⏳ Finalizando...';
+
+  try {
+    const res = await fetch('/api/sessions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ studentName })
+    });
+    if (!res.ok) throw new Error('Error del servidor');
+    // Redirigir a la página de finalización
+    window.location.href = `finalizado.html?nombre=${encodeURIComponent(studentName)}`;
+  } catch (err) {
+    showToast('Error al finalizar. Intentá de nuevo.', 'error');
+    btn.disabled = false;
+    btn.textContent = '✅ Finalizar Ejercicios';
+  }
+}

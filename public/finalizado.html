@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examen Finalizado</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #f0f4f8;
+    }
+    .finish-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .finish-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: pop 0.5s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      80% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .finish-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+    }
+    .finish-name {
+      font-size: 1.2rem;
+      color: #38a169;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .finish-msg {
+      color: #4a5568;
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 320px;
+      margin-bottom: 32px;
+    }
+    .finish-time {
+      background: white;
+      border-radius: 10px;
+      padding: 12px 24px;
+      color: #718096;
+      font-size: 0.88rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 32px;
+    }
+    .btn-close {
+      background: #2b4a7a;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📐 Repaso de Matemática</h1>
+    <div id="status-bar">
+      <span id="status-text">Examen finalizado</span>
+    </div>
+  </header>
+
+  <div class="finish-container">
+    <div class="finish-icon">🎉</div>
+    <div class="finish-title">¡Examen Finalizado!</div>
+    <div class="finish-name" id="student-display"></div>
+    <p class="finish-msg">
+      Tus respuestas fueron enviadas correctamente.<br>
+      Tu docente podrá revisarlas desde el panel.
+    </p>
+    <div class="finish-time" id="finish-time"></div>
+    <button class="btn-close" onclick="window.close()">Cerrar</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get('nombre') || 'Alumno';
+    document.getElementById('student-display').textContent = nombre;
+
+    const now = new Date();
+    document.getElementById('finish-time').textContent =
+      '🕐 ' + now.toLocaleDateString('es-AR') + ' a las ' +
+      now.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+
+    // Bloquear el botón atrás para que no vuelva a los ejercicios
+    history.pushState(null, '', window.location.href);
+    window.addEventListener('popstate', () => {
+      history.pushState(null, '', window.location.href);
+    });
+  </script>
+</body>
+</html>
