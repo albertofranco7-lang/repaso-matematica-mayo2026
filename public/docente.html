@@ -319,7 +319,7 @@
                 <div class="answer-exercise-title">📝 ${escapeHtml(a.exerciseTitle || a.exerciseId)}</div>
                 <div class="answer-sent-time">Enviado a las ${timeStr}</div>
               </div>
-              <img class="answer-image" src="${a.imageBase64}" alt="Respuesta" onclick="openLightbox('${a.id}')" loading="lazy" />
+              <img class="answer-image" src="${a.imageUrl || a.imageBase64}" alt="Respuesta" onclick="openLightbox('${a.id}')" loading="lazy" />
             </div>
           `;
         }).join('');
@@ -339,7 +339,7 @@
     function openLightbox(id) {
       const answer = allAnswers.find(a => a.id === id);
       if (!answer) return;
-      document.getElementById('lightbox-img').src = answer.imageBase64;
+      document.getElementById('lightbox-img').src = answer.imageUrl || answer.imageBase64;
       document.getElementById('lightbox').classList.add('active');
     }
 
